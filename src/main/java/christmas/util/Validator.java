@@ -1,6 +1,8 @@
 package christmas.util;
 
 import christmas.model.Menu;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +24,7 @@ public class Validator {
         validateInputFormat(input);
         validateExistMenu(input);
         validateAmount(input);
+        validateDuplicateMenu(input);
     }
 
     private static void validateInputFormat(String input) {
@@ -67,5 +70,25 @@ public class Validator {
             sum += amount;
         }
         return sum;
+    }
+
+    private static void validateDuplicateMenu(String input) {
+        if (hasDuplicateMenu(input)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static boolean hasDuplicateMenu(String input) {
+        Set<String> uniqueOrderMenus = new HashSet<>();
+        String[] orderMenus = input.split(",");
+
+        for (String orderMenu : orderMenus) {
+            String menu = orderMenu.split("-")[0];
+
+            if (!uniqueOrderMenus.add(menu)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
