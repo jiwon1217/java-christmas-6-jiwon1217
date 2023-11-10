@@ -41,7 +41,15 @@ public enum Menu {
         return name;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public static boolean findMenu(String input) {
         return MENU_LIST.containsKey(input);
+    }
+
+    public static Menu getMenu(String input) {
+        return MENU_LIST.get(input);
     }
 }

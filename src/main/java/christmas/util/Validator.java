@@ -1,5 +1,6 @@
 package christmas.util;
 
+import christmas.model.Category;
 import christmas.model.Menu;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class Validator {
         validateExistMenu(input);
         validateAmount(input);
         validateDuplicateMenu(input);
+        validateOnlyOrderBeverage(input);
     }
 
     private static void validateInputFormat(String input) {
@@ -90,5 +92,25 @@ public class Validator {
             }
         }
         return false;
+    }
+
+    private static void validateOnlyOrderBeverage(String input) {
+        if (isBeverageOnlyOrder(input)) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static boolean isBeverageOnlyOrder(String input) {
+        String[] orderMenus = input.split(",");
+
+        for (String orderMenu : orderMenus) {
+            String menuName = orderMenu.split("-")[0];
+            Menu menu = Menu.getMenu(menuName);
+
+            if (menu.getCategory() != Category.BEVERAGE) {
+                return false;
+            }
+        }
+        return true;
     }
 }
