@@ -8,4 +8,8 @@ public class VisitDate {
     public VisitDate(int visitDay) {
         this.visitDate = LocalDate.of(2023, 12, visitDay);
     }
+
+    public int getDay() {
+        return visitDate.getDayOfMonth();
+    }
 }
