@@ -3,7 +3,7 @@ package christmas.model;
 import java.time.LocalDate;
 
 public class VisitDate {
-    LocalDate visitDate;
+    private final LocalDate visitDate;
 
     public VisitDate(int visitDay) {
         this.visitDate = LocalDate.of(2023, 12, visitDay);
