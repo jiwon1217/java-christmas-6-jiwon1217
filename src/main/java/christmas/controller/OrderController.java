@@ -23,6 +23,6 @@ public class OrderController {
         OrderAmount orderAmount = Calculator.calculateOrderAmount(orderList);
         OutputView.printOrderAmount(orderAmount);
 
-        return new PaymentInformation(visitDate, orderAmount);
+        return new PaymentInformation(visitDate, orderList, orderAmount);
     }
 }
