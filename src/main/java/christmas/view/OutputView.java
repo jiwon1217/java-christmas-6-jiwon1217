@@ -1,8 +1,10 @@
 package christmas.view;
 
 import christmas.model.Menu;
+import christmas.model.OrderAmount;
 import christmas.model.OrderList;
 import christmas.model.VisitDate;
+import christmas.util.CurrencyFormatter;
 import java.util.Map;
 
 public class OutputView {
@@ -23,5 +25,11 @@ public class OutputView {
             int amount = orderMenu.getValue();
             System.out.println(menu.getName() + " " + amount + "개");
         }
+    }
+
+    public static void printOrderAmount(OrderAmount orderAmount) {
+        System.out.println();
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(CurrencyFormatter.changeFormat(orderAmount) + "원");
     }
 }
