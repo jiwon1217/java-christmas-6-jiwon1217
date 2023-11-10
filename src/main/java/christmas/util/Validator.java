@@ -1,5 +1,7 @@
 package christmas.util;
 
+import christmas.model.Menu;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -12,12 +14,13 @@ public class Validator {
         }
     }
 
-    public static boolean isBetween1And31(String input) {
+    private static boolean isBetween1And31(String input) {
         return BETWEEN_1_AND_31_REGEX.matcher(input).matches();
     }
 
     public static void validateOrderMenu(String input) {
         validateInputFormat(input);
+        validateExistMenu(input);
     }
 
     private static void validateInputFormat(String input) {
@@ -28,5 +31,22 @@ public class Validator {
 
     private static boolean isValidInputFormat(String input) {
         return ORDER_MENU_REGEX.matcher(input).matches();
+    }
+
+    private static void validateExistMenu(String input) {
+        Pattern menuPattern = Pattern.compile("([가-힣]+)-\\d");
+        Matcher menuMatcher = menuPattern.matcher(input);
+
+        while (menuMatcher.find()) {
+            String menu = menuMatcher.group(1);
+
+            if (isNotExistMenu(menu)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+        }
+    }
+
+    private static boolean isNotExistMenu(String input) {
+        return !Menu.findMenu(input);
     }
 }
