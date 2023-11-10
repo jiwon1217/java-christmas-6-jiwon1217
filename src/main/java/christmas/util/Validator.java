@@ -21,6 +21,7 @@ public class Validator {
     public static void validateOrderMenu(String input) {
         validateInputFormat(input);
         validateExistMenu(input);
+        validateAmount(input);
     }
 
     private static void validateInputFormat(String input) {
@@ -48,5 +49,23 @@ public class Validator {
 
     private static boolean isNotExistMenu(String input) {
         return !Menu.findMenu(input);
+    }
+
+    private static void validateAmount(String input) {
+        if (calculateAmount(input) > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static int calculateAmount(String input) {
+        Pattern menuPattern = Pattern.compile("([가-힣]+)-(\\d+)");
+        Matcher menuMatcher = menuPattern.matcher(input);
+        int sum = 0;
+
+        while (menuMatcher.find()) {
+            int amount = Integer.parseInt(menuMatcher.group(2));
+            sum += amount;
+        }
+        return sum;
     }
 }
