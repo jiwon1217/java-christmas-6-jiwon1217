@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.GiveawayDetails;
 import christmas.model.Menu;
 import christmas.model.OrderAmount;
 import christmas.model.OrderList;
@@ -31,5 +32,21 @@ public class OutputView {
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(CurrencyFormatter.changeFormat(orderAmount) + "원");
+    }
+
+    public static void printGiveawayDetails(GiveawayDetails giveawayDetails) {
+        System.out.println();
+        System.out.println("<증정 메뉴>");
+
+        if (giveawayDetails.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+
+        for (Map.Entry<Menu, Integer> giveaway : giveawayDetails.get().entrySet()) {
+            Menu menu = giveaway.getKey();
+            int quantity = giveaway.getValue();
+            System.out.println(menu.getName() + " " + quantity + "개");
+        }
     }
 }
