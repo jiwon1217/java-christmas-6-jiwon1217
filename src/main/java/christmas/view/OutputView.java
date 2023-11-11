@@ -31,7 +31,7 @@ public class OutputView {
     public static void printOrderAmount(OrderAmount orderAmount) {
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(CurrencyFormatter.changeFormat(orderAmount) + "원");
+        System.out.println(CurrencyFormatter.changeFormat(orderAmount.orderAmount()) + "원");
     }
 
     public static void printGiveawayDetails(GiveawayDetails giveawayDetails) {
