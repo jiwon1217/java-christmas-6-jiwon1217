@@ -1,5 +1,6 @@
 package christmas.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class VisitDate {
@@ -7,6 +8,10 @@ public class VisitDate {
 
     public VisitDate(int visitDay) {
         this.visitDate = LocalDate.of(2023, 12, visitDay);
+    }
+
+    public int getDayOfTheWeek() {
+        return visitDate.getDayOfWeek().getValue();
     }
 
     public int getDay() {

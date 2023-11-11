@@ -7,6 +7,9 @@ import christmas.model.VisitDate;
 import christmas.util.BenefitCalculator;
 
 public class BenefitController {
+    private static final int FRIDAY = 5;
+    private static final int SATURDAY = 6;
+
     private boolean isPossibleGiveawayEvent(GiveawayDetails giveawayDetails) {
         return !giveawayDetails.isEmpty();
     }
@@ -20,5 +23,9 @@ public class BenefitController {
     private void getChristmasDDayDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
         benefitDetails.put(DiscountPolicy.CHRISTMAS_D_DAY_DISCOUNT,
                 BenefitCalculator.calculateChristmasDDayDiscount(visitDate));
+    }
+
+    private boolean isWeekend(VisitDate visitDate) {
+        return visitDate.getDayOfTheWeek() == FRIDAY || visitDate.getDayOfTheWeek() == SATURDAY;
     }
 }
