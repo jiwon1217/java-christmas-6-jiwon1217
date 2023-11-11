@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.model.BenefitDetails;
 import christmas.model.DiscountPolicy;
 import christmas.model.GiveawayDetails;
+import christmas.model.OrderList;
 import christmas.model.VisitDate;
 import christmas.util.BenefitCalculator;
 
@@ -27,5 +28,12 @@ public class BenefitController {
 
     private boolean isWeekend(VisitDate visitDate) {
         return visitDate.getDayOfTheWeek() == FRIDAY || visitDate.getDayOfTheWeek() == SATURDAY;
+    }
+
+    private void getWeekdayDiscount(VisitDate visitDate, BenefitDetails benefitDetails,
+                                    OrderList orderList) {
+        if (!isWeekend(visitDate)) {
+            benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, BenefitCalculator.calculateWeekdayDiscount(orderList));
+        }
     }
 }
