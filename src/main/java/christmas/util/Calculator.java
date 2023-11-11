@@ -1,5 +1,8 @@
 package christmas.util;
 
+import christmas.model.BenefitAmount;
+import christmas.model.BenefitDetails;
+import christmas.model.DiscountPolicy;
 import christmas.model.Menu;
 import christmas.model.OrderAmount;
 import christmas.model.OrderList;
@@ -16,5 +19,14 @@ public class Calculator {
             orderAmount += menu.getPrice() * amount;
         }
         return new OrderAmount(orderAmount);
+    }
+
+    public static BenefitAmount calculateBenefitAmount(BenefitDetails benefitDetails) {
+        int benefitAmount = 0;
+
+        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.get().entrySet()) {
+            benefitAmount += benefit.getValue();
+        }
+        return new BenefitAmount(benefitAmount);
     }
 }
