@@ -1,5 +1,7 @@
 package christmas.view;
 
+import christmas.model.BenefitDetails;
+import christmas.model.DiscountPolicy;
 import christmas.model.GiveawayDetails;
 import christmas.model.Menu;
 import christmas.model.OrderAmount;
@@ -47,6 +49,23 @@ public class OutputView {
             Menu menu = giveaway.getKey();
             int quantity = giveaway.getValue();
             System.out.println(menu.getName() + " " + quantity + "개");
+        }
+    }
+
+    public static void printBenefitDetails(BenefitDetails benefitDetails) {
+        System.out.println();
+        System.out.println("<헤택 내역>");
+
+        if (benefitDetails.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+
+        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.get().entrySet()) {
+            DiscountPolicy discountPolicy = benefit.getKey();
+            int benefitAmount = benefit.getValue();
+            System.out.println(
+                    discountPolicy.getName() + " " + ":" + "-" + CurrencyFormatter.changeFormat(benefitAmount) + "원");
         }
     }
 }

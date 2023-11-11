@@ -1,5 +1,6 @@
 package christmas.model;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class BenefitDetails {
@@ -9,7 +10,15 @@ public class BenefitDetails {
         this.benefitDetails = benefitDetails;
     }
 
+    public Map<DiscountPolicy, Integer> get() {
+        return Collections.unmodifiableMap(benefitDetails);
+    }
+
     public void put(DiscountPolicy discountPolicy, int amount) {
         benefitDetails.put(discountPolicy, amount);
+    }
+
+    public boolean isEmpty() {
+        return benefitDetails.isEmpty();
     }
 }
