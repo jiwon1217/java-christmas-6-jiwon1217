@@ -30,10 +30,12 @@ public class BenefitController {
         return visitDate.getDayOfTheWeek() == FRIDAY || visitDate.getDayOfTheWeek() == SATURDAY;
     }
 
-    private void getWeekdayDiscount(VisitDate visitDate, BenefitDetails benefitDetails,
-                                    OrderList orderList) {
-        if (!isWeekend(visitDate)) {
-            benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, BenefitCalculator.calculateWeekdayDiscount(orderList));
+    private void getWeekendOrWeekdayDiscount(VisitDate visitDate, BenefitDetails benefitDetails,
+                                             OrderList orderList) {
+        if (isWeekend(visitDate)) {
+            benefitDetails.put(DiscountPolicy.WEEKEND_DISCOUNT, BenefitCalculator.calculateWeekendDiscount(orderList));
+            return;
         }
+        benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, BenefitCalculator.calculateWeekdayDiscount(orderList));
     }
 }

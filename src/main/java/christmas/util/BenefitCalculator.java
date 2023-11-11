@@ -28,4 +28,11 @@ public class BenefitCalculator {
                 .mapToInt(entry -> entry.getValue() * DAY_DISCOUNT_AMOUNT)
                 .sum();
     }
+
+    public static int calculateWeekendDiscount(OrderList orderList) {
+        return orderList.get().entrySet().stream()
+                .filter(entry -> entry.getKey().getCategory() == Category.MAIN)
+                .mapToInt(entry -> entry.getValue() * DAY_DISCOUNT_AMOUNT)
+                .sum();
+    }
 }
