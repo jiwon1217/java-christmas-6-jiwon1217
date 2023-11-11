@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.BenefitAmount;
 import christmas.model.BenefitDetails;
 import christmas.model.DiscountPolicy;
 import christmas.model.GiveawayDetails;
@@ -67,5 +68,11 @@ public class OutputView {
             System.out.println(
                     discountPolicy.getName() + " " + ":" + "-" + CurrencyFormatter.changeFormat(benefitAmount) + "원");
         }
+    }
+
+    public static void printBenefitAmount(BenefitAmount benefitAmount) {
+        System.out.println();
+        System.out.println("<총혜택 금액>");
+        System.out.println("-" + CurrencyFormatter.changeFormat(benefitAmount.benefitAmount()) + "원");
     }
 }
