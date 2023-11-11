@@ -44,4 +44,10 @@ public class BenefitController {
     private static boolean isSpecial(VisitDate visitDate) {
         return visitDate.getDayOfTheWeek() == SUNDAY || visitDate.getDay() == CHRISTMAS_DAY;
     }
+
+    private void getSpecialDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
+        if (isSpecial(visitDate)) {
+            benefitDetails.put(DiscountPolicy.SPECIAL_DISCOUNT, BenefitCalculator.calculateSpecialDiscount());
+        }
+    }
 }

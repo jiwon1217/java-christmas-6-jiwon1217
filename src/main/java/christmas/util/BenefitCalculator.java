@@ -11,6 +11,7 @@ public class BenefitCalculator {
     private static final int START_DISCOUNT_AMOUNT = 1000;
     private static final int DAILY_DISCOUNT_INCREMENT = 100;
     private static final int DAY_DISCOUNT_AMOUNT = 2023;
+    private static final int SPECIAL_DISCOUNT_AMOUNT = 1000;
 
     public static int calculateGiveawayEvent() {
         return GIVEAWAY_AMOUNT;
@@ -34,5 +35,9 @@ public class BenefitCalculator {
                 .filter(entry -> entry.getKey().getCategory() == Category.MAIN)
                 .mapToInt(entry -> entry.getValue() * DAY_DISCOUNT_AMOUNT)
                 .sum();
+    }
+
+    public static int calculateSpecialDiscount() {
+        return SPECIAL_DISCOUNT_AMOUNT;
     }
 }
