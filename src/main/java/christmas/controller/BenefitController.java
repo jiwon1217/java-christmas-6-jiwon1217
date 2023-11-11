@@ -10,6 +10,8 @@ import christmas.util.BenefitCalculator;
 public class BenefitController {
     private static final int FRIDAY = 5;
     private static final int SATURDAY = 6;
+    private static final int SUNDAY = 7;
+    private static final int CHRISTMAS_DAY = 25;
 
     private boolean isPossibleGiveawayEvent(GiveawayDetails giveawayDetails) {
         return !giveawayDetails.isEmpty();
@@ -37,5 +39,9 @@ public class BenefitController {
             return;
         }
         benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, BenefitCalculator.calculateWeekdayDiscount(orderList));
+    }
+
+    private static boolean isSpecial(VisitDate visitDate) {
+        return visitDate.getDayOfTheWeek() == SUNDAY || visitDate.getDay() == CHRISTMAS_DAY;
     }
 }
