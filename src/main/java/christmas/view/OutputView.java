@@ -7,6 +7,7 @@ import christmas.model.GiveawayDetails;
 import christmas.model.Menu;
 import christmas.model.OrderAmount;
 import christmas.model.OrderList;
+import christmas.model.PayAmount;
 import christmas.model.VisitDate;
 import christmas.util.CurrencyFormatter;
 import java.util.Map;
@@ -74,5 +75,11 @@ public class OutputView {
         System.out.println();
         System.out.println("<총혜택 금액>");
         System.out.println("-" + CurrencyFormatter.changeFormat(benefitAmount.benefitAmount()) + "원");
+    }
+
+    public static void printPayAmount(PayAmount payAmount) {
+        System.out.println();
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(CurrencyFormatter.changeFormat(payAmount.payAmount()) + "원");
     }
 }
