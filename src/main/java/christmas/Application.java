@@ -22,8 +22,7 @@ public class Application {
 
         BenefitInformation benefitInformation = new BenefitAmountController().getBenefitAmount(benefitDetails);
 
-        PayAmount payAmount = new PaymentController().pay(paymentInformation, benefitInformation);
-
+        new PaymentController().pay(paymentInformation, benefitInformation);
         new BadgeController().give(benefitInformation);
     }
 }

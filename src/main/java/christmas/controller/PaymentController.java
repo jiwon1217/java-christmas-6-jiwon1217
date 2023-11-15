@@ -7,11 +7,9 @@ import christmas.util.Calculator;
 import christmas.view.OutputView;
 
 public class PaymentController {
-    public PayAmount pay(PaymentInformation paymentInformation, BenefitInformation benefitInformation) {
+    public void pay(PaymentInformation paymentInformation, BenefitInformation benefitInformation) {
         PayAmount payAmount = Calculator.calculatePayAmount(paymentInformation, benefitInformation);
 
         OutputView.printPayAmount(payAmount);
-
-        return payAmount;
     }
 }
