@@ -1,7 +1,6 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.model.order.VisitDate;
 import christmas.util.Validator;
 
 public class InputView {
@@ -18,9 +17,8 @@ public class InputView {
             String input = Console.readLine();
 
             Validator.validateVisitDay(input);
-            int visitDay = Integer.parseInt(input);
 
-            return visitDay;
+            return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askVisitDate();
