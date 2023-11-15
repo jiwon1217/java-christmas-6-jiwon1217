@@ -2,7 +2,7 @@ package christmas.controller;
 
 import christmas.model.OrderAmount;
 import christmas.model.OrderList;
-import christmas.model.PaymentInformation;
+import christmas.model.OrderInformation;
 import christmas.model.VisitDate;
 import christmas.util.Calculator;
 import christmas.util.Parser;
@@ -10,7 +10,7 @@ import christmas.view.InputView;
 import christmas.view.OutputView;
 
 public class OrderController {
-    public PaymentInformation order() {
+    public OrderInformation order() {
         OutputView.printGreeting();
         VisitDate visitDate = InputView.askVisitDate();
 
@@ -23,6 +23,6 @@ public class OrderController {
         OrderAmount amount = Calculator.calculateOrderAmount(orderList);
         OutputView.printOrderAmount(amount);
 
-        return new PaymentInformation(visitDate, orderList, amount);
+        return new OrderInformation(visitDate, orderList, amount);
     }
 }

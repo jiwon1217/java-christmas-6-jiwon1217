@@ -8,7 +8,7 @@ import christmas.model.Menu;
 import christmas.model.OrderAmount;
 import christmas.model.OrderList;
 import christmas.model.PayAmount;
-import christmas.model.PaymentInformation;
+import christmas.model.OrderInformation;
 import java.util.Map;
 
 public class Calculator {
@@ -33,17 +33,17 @@ public class Calculator {
         return new BenefitAmount(amount);
     }
 
-    public static PayAmount calculatePayAmount(PaymentInformation paymentInformation,
+    public static PayAmount calculatePayAmount(OrderInformation orderInformation,
                                                BenefitInformation benefitInformation) {
         BenefitDetails benefitDetails = benefitInformation.getBenefitDetails();
 
         if (benefitDetails.isEmpty()) {
-            return new PayAmount(paymentInformation.getOrderAmount());
+            return new PayAmount(orderInformation.getOrderAmount());
         }
 
         int giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
         int amount =
-                paymentInformation.getOrderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
+                orderInformation.getOrderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
 
         return new PayAmount(amount);
     }

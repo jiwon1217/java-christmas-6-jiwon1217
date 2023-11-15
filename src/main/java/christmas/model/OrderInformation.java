@@ -1,11 +1,11 @@
 package christmas.model;
 
-public class PaymentInformation {
+public class OrderInformation {
     private final VisitDate visitDate;
     private final OrderList orderList;
     private final OrderAmount orderAmount;
 
-    public PaymentInformation(VisitDate visitDate, OrderList orderList, OrderAmount orderAmount) {
+    public OrderInformation(VisitDate visitDate, OrderList orderList, OrderAmount orderAmount) {
         this.visitDate = visitDate;
         this.orderList = orderList;
         this.orderAmount = orderAmount;

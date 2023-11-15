@@ -9,19 +9,19 @@ import christmas.controller.PaymentController;
 import christmas.model.BenefitDetails;
 import christmas.model.BenefitInformation;
 import christmas.model.GiveawayDetails;
-import christmas.model.PaymentInformation;
+import christmas.model.OrderInformation;
 
 public class Application {
     public static void main(String[] args) {
-        PaymentInformation paymentInformation = new OrderController().order();
+        OrderInformation orderInformation = new OrderController().order();
 
-        GiveawayDetails giveawayDetails = new GiveawayController().give(paymentInformation);
+        GiveawayDetails giveawayDetails = new GiveawayController().give(orderInformation);
 
-        BenefitDetails benefitDetails = new BenefitController().apply(paymentInformation, giveawayDetails);
+        BenefitDetails benefitDetails = new BenefitController().apply(orderInformation, giveawayDetails);
 
         BenefitInformation benefitInformation = new BenefitAmountController().getBenefitAmount(benefitDetails);
 
-        new PaymentController().pay(paymentInformation, benefitInformation);
+        new PaymentController().pay(orderInformation, benefitInformation);
         new BadgeController().give(benefitInformation);
     }
 }

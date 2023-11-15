@@ -4,7 +4,7 @@ import christmas.model.BenefitDetails;
 import christmas.model.DiscountPolicy;
 import christmas.model.GiveawayDetails;
 import christmas.model.OrderList;
-import christmas.model.PaymentInformation;
+import christmas.model.OrderInformation;
 import christmas.model.VisitDate;
 import christmas.util.BenefitCalculator;
 import christmas.view.OutputView;
@@ -18,9 +18,9 @@ public class BenefitController {
     private static final int CHRISTMAS_DAY = 25;
     private static final int BENEFIT_THRESHOLD = 10_000;
 
-    public BenefitDetails apply(PaymentInformation paymentInformation, GiveawayDetails giveawayDetails) {
-        int amount = paymentInformation.getOrderAmount();
-        VisitDate visitDate = paymentInformation.visitDate();
+    public BenefitDetails apply(OrderInformation orderInformation, GiveawayDetails giveawayDetails) {
+        int amount = orderInformation.getOrderAmount();
+        VisitDate visitDate = orderInformation.visitDate();
 
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);
         BenefitDetails benefitDetails = new BenefitDetails(benefitInformation);
@@ -28,7 +28,7 @@ public class BenefitController {
         if (isPossibleBenefit(amount)) {
             getGiveawayEvent(giveawayDetails, benefitDetails);
             getChristmasDDayAndSpecialDiscount(visitDate, benefitDetails);
-            getWeekendOrWeekdayDiscount(visitDate, benefitDetails, paymentInformation.orderList());
+            getWeekendOrWeekdayDiscount(visitDate, benefitDetails, orderInformation.orderList());
         }
         OutputView.printBenefitDetails(benefitDetails);
         return benefitDetails;

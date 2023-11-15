@@ -2,7 +2,7 @@ package christmas.controller;
 
 import christmas.model.GiveawayDetails;
 import christmas.model.Menu;
-import christmas.model.PaymentInformation;
+import christmas.model.OrderInformation;
 import christmas.view.OutputView;
 import java.util.EnumMap;
 import java.util.Map;
@@ -11,8 +11,8 @@ public class GiveawayController {
     private static final int GIVEAWAY_THRESHOLD = 120_000;
     private static final int GIVEAWAY_QUANTITY = 1;
 
-    public GiveawayDetails give(PaymentInformation paymentInformation) {
-        int amount = paymentInformation.getOrderAmount();
+    public GiveawayDetails give(OrderInformation orderInformation) {
+        int amount = orderInformation.getOrderAmount();
 
         Map<Menu, Integer> giveawayInformation = new EnumMap<>(Menu.class);
         GiveawayDetails giveawayDetails = new GiveawayDetails(giveawayInformation);
