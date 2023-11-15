@@ -13,24 +13,24 @@ import java.util.Map;
 
 public class Calculator {
     public static OrderAmount calculateOrderAmount(OrderList orderList) {
-        int orderAmount = 0;
+        int amount = 0;
 
         for (Map.Entry<Menu, Integer> orderMenu : orderList.get().entrySet()) {
             Menu menu = orderMenu.getKey();
-            int amount = orderMenu.getValue();
+            int quantity = orderMenu.getValue();
 
-            orderAmount += menu.getPrice() * amount;
+            amount += menu.getPrice() * quantity;
         }
-        return new OrderAmount(orderAmount);
+        return new OrderAmount(amount);
     }
 
     public static BenefitAmount calculateBenefitAmount(BenefitDetails benefitDetails) {
-        int benefitAmount = 0;
+        int amount = 0;
 
         for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.get().entrySet()) {
-            benefitAmount += benefit.getValue();
+            amount += benefit.getValue();
         }
-        return new BenefitAmount(benefitAmount);
+        return new BenefitAmount(amount);
     }
 
     public static PayAmount calculatePayAmount(PaymentInformation paymentInformation,
@@ -42,9 +42,9 @@ public class Calculator {
         }
 
         int giveawayAmount = benefitDetails.get().get(DiscountPolicy.GIVEAWAY_EVENT);
-        int payAmount =
+        int amount =
                 paymentInformation.getOrderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
 
-        return new PayAmount(payAmount);
+        return new PayAmount(amount);
     }
 }

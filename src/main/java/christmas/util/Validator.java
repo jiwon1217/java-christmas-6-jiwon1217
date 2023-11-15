@@ -30,7 +30,7 @@ public class Validator {
     public static void validateOrderMenu(String input) {
         validateInputFormat(input);
         validateExistMenu(input);
-        validateAmount(input);
+        validateQuantity(input);
         validateDuplicateMenu(input);
         validateOnlyOrderBeverage(input);
     }
@@ -61,13 +61,13 @@ public class Validator {
         return !Menu.findMenu(input);
     }
 
-    private static void validateAmount(String input) {
-        if (calculateAmount(input) > ORDER_THRESHOLD) {
+    private static void validateQuantity(String input) {
+        if (calculateMenuQuantity(input) > ORDER_THRESHOLD) {
             throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
         }
     }
 
-    private static int calculateAmount(String input) {
+    private static int calculateMenuQuantity(String input) {
         Matcher menuMatcher = MENU_PATTERN.matcher(input);
         int sum = 0;
 

@@ -15,10 +15,10 @@ public class Parser {
 
         for (String orderMenu : orderMenus) {
             String menuName = orderMenu.split(QUANTITY_DELIMITER)[0];
-            String amount = orderMenu.split(QUANTITY_DELIMITER)[1];
+            String quantity = orderMenu.split(QUANTITY_DELIMITER)[1];
 
             Menu menu = Menu.getMenu(menuName);
-            orderList.put(menu, Integer.parseInt(amount));
+            orderList.put(menu, Integer.parseInt(quantity));
         }
         return new OrderList(orderList);
     }
