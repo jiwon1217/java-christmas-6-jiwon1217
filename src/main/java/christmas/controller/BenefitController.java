@@ -3,8 +3,8 @@ package christmas.controller;
 import christmas.model.benefit.BenefitDetails;
 import christmas.model.benefit.DiscountPolicy;
 import christmas.model.giveaway.GiveawayDetails;
-import christmas.model.order.OrderList;
 import christmas.model.order.OrderInformation;
+import christmas.model.order.OrderList;
 import christmas.model.order.VisitDate;
 import christmas.util.BenefitCalculator;
 import christmas.view.OutputView;
@@ -12,12 +12,6 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class BenefitController {
-    private static final int FRIDAY = 5;
-    private static final int SATURDAY = 6;
-    private static final int SUNDAY = 7;
-    private static final int CHRISTMAS_DAY = 25;
-    private static final int BENEFIT_THRESHOLD = 10_000;
-
     public BenefitDetails apply(OrderInformation orderInformation, GiveawayDetails giveawayDetails) {
         int amount = orderInformation.orderAmount();
         VisitDate visitDate = orderInformation.visitDate();
@@ -25,59 +19,38 @@ public class BenefitController {
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);
         BenefitDetails benefitDetails = new BenefitDetails(benefitInformation);
 
-        if (isPossibleBenefit(amount)) {
-            getGiveawayEvent(giveawayDetails, benefitDetails);
-            getChristmasDDayAndSpecialDiscount(visitDate, benefitDetails);
-            getWeekendOrWeekdayDiscount(visitDate, benefitDetails, orderInformation.orderList());
+        if (benefitDetails.isPossibleBenefit(amount)) {
+            benefitDetails.applyGiveawayEvent();
+            applyChristmasDDayAndSpecialDiscount(visitDate, benefitDetails);
+            applyWeekendOrWeekdayDiscount(visitDate, benefitDetails, orderInformation.orderList());
         }
         OutputView.printBenefitDetails(benefitDetails);
+
         return benefitDetails;
     }
 
-    private boolean isPossibleBenefit(int orderAmount) {
-        return orderAmount >= BENEFIT_THRESHOLD;
+    private void applyChristmasDDayAndSpecialDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
+        applyChristmasDDayDiscount(benefitDetails, visitDate);
+        applySpecialDiscount(benefitDetails, visitDate);
     }
 
-    private boolean isPossibleGiveawayEvent(GiveawayDetails giveawayDetails) {
-        return !giveawayDetails.isEmpty();
-    }
-
-    private void getGiveawayEvent(GiveawayDetails giveawayDetails, BenefitDetails benefitDetails) {
-        if (isPossibleGiveawayEvent(giveawayDetails)) {
-            benefitDetails.put(DiscountPolicy.GIVEAWAY_EVENT, BenefitCalculator.calculateGiveawayEvent());
-        }
-    }
-
-    private void getChristmasDDayAndSpecialDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
-        getChristmasDDayDiscount(visitDate, benefitDetails);
-        getSpecialDiscount(visitDate, benefitDetails);
-    }
-
-    private void getChristmasDDayDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
+    public void applyChristmasDDayDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
         benefitDetails.put(DiscountPolicy.CHRISTMAS_D_DAY_DISCOUNT,
                 BenefitCalculator.calculateChristmasDDayDiscount(visitDate));
     }
 
-    private boolean isWeekend(VisitDate visitDate) {
-        return visitDate.getDayOfTheWeek() == FRIDAY || visitDate.getDayOfTheWeek() == SATURDAY;
+    public void applySpecialDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
+        if (visitDate.isSpecialDay()) {
+            benefitDetails.put(DiscountPolicy.SPECIAL_DISCOUNT, BenefitCalculator.calculateSpecialDiscount());
+        }
     }
 
-    private void getWeekendOrWeekdayDiscount(VisitDate visitDate, BenefitDetails benefitDetails,
-                                             OrderList orderList) {
-        if (isWeekend(visitDate)) {
+    private void applyWeekendOrWeekdayDiscount(VisitDate visitDate, BenefitDetails benefitDetails,
+                                               OrderList orderList) {
+        if (visitDate.isWeekend()) {
             benefitDetails.put(DiscountPolicy.WEEKEND_DISCOUNT, BenefitCalculator.calculateWeekendDiscount(orderList));
             return;
         }
         benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, BenefitCalculator.calculateWeekdayDiscount(orderList));
-    }
-
-    private static boolean isSpecial(VisitDate visitDate) {
-        return visitDate.getDayOfTheWeek() == SUNDAY || visitDate.getDay() == CHRISTMAS_DAY;
-    }
-
-    private void getSpecialDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
-        if (isSpecial(visitDate)) {
-            benefitDetails.put(DiscountPolicy.SPECIAL_DISCOUNT, BenefitCalculator.calculateSpecialDiscount());
-        }
     }
 }
