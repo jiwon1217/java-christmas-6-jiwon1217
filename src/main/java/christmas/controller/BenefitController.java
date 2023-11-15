@@ -16,23 +16,36 @@ public class BenefitController {
         int amount = orderInformation.orderAmount();
         VisitDate visitDate = orderInformation.visitDate();
 
+        BenefitDetails benefitDetails = applyBenefits(amount, visitDate, giveawayDetails,
+                orderInformation.orderList());
+
+        OutputView.printBenefitDetails(benefitDetails);
+
+        return benefitDetails;
+    }
+
+    private BenefitDetails applyBenefits(int amount, VisitDate visitDate, GiveawayDetails giveawayDetails,
+                                         OrderList orderList) {
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);
         BenefitDetails benefitDetails = new BenefitDetails(benefitInformation);
 
         if (benefitDetails.isPossibleBenefit(amount)) {
             applyGiveawayEvent(benefitDetails, giveawayDetails);
             applyChristmasDDayAndSpecialDiscount(visitDate, benefitDetails);
-            applyWeekendOrWeekdayDiscount(visitDate, benefitDetails, orderInformation.orderList());
+            applyWeekendOrWeekdayDiscount(visitDate, benefitDetails, orderList);
         }
-        OutputView.printBenefitDetails(benefitDetails);
 
         return benefitDetails;
     }
 
     private void applyGiveawayEvent(BenefitDetails benefitDetails, GiveawayDetails giveawayDetails) {
         if (!giveawayDetails.isEmpty()) {
-            benefitDetails.put(DiscountPolicy.GIVEAWAY_EVENT, BenefitCalculator.calculateGiveawayEvent());
+            benefitDetails.put(DiscountPolicy.GIVEAWAY_EVENT, calculateGiveawayEvent());
         }
+    }
+
+    private int calculateGiveawayEvent() {
+        return BenefitCalculator.calculateGiveawayEvent();
     }
 
     private void applyChristmasDDayAndSpecialDiscount(VisitDate visitDate, BenefitDetails benefitDetails) {
@@ -43,8 +56,12 @@ public class BenefitController {
     private void applyChristmasDDayDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
         if (visitDate.isInChristmasDay()) {
             benefitDetails.put(DiscountPolicy.CHRISTMAS_D_DAY_DISCOUNT,
-                    BenefitCalculator.calculateChristmasDDayDiscount(visitDate));
+                    calculateChristmasDDayDiscount(visitDate));
         }
+    }
+
+    private int calculateChristmasDDayDiscount(VisitDate visitDate) {
+        return BenefitCalculator.calculateChristmasDDayDiscount(visitDate);
     }
 
     private void applySpecialDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
@@ -63,18 +80,26 @@ public class BenefitController {
     }
 
     private void applyWeekendDiscount(BenefitDetails benefitDetails, OrderList orderList) {
-        int amount = BenefitCalculator.calculateWeekendDiscount(orderList);
+        int amount = calculateWeekendDiscount(orderList);
 
         if (amount > 0) {
             benefitDetails.put(DiscountPolicy.WEEKEND_DISCOUNT, amount);
         }
     }
 
+    private int calculateWeekendDiscount(OrderList orderList) {
+        return BenefitCalculator.calculateWeekendDiscount(orderList);
+    }
+
     private void applyWeekdayDiscount(BenefitDetails benefitDetails, OrderList orderList) {
-        int amount = BenefitCalculator.calculateWeekdayDiscount(orderList);
+        int amount = calculateWeekdayDiscount(orderList);
 
         if (amount > 0) {
             benefitDetails.put(DiscountPolicy.WEEKDAYS_DISCOUNT, amount);
         }
+    }
+
+    private int calculateWeekdayDiscount(OrderList orderList) {
+        return BenefitCalculator.calculateWeekdayDiscount(orderList);
     }
 }
