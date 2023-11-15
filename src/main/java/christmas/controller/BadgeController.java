@@ -11,7 +11,6 @@ public class BadgeController {
     private static final int SANTA_BADGE_THRESHOLD = 20_000;
     private static final int TREE_BADGE_THRESHOLD = 10_000;
     private static final int STAR_BADGE_THRESHOLD = 5_000;
-
     private static final Map<Integer, Badge> THRESHOLD_TO_BADGE = new HashMap<>();
 
     static {
