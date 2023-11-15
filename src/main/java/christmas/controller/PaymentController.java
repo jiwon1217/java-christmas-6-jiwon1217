@@ -1,8 +1,8 @@
 package christmas.controller;
 
-import christmas.model.BenefitInformation;
-import christmas.model.PayAmount;
-import christmas.model.OrderInformation;
+import christmas.model.benefit.BenefitInformation;
+import christmas.model.payment.PayAmount;
+import christmas.model.order.OrderInformation;
 import christmas.util.Calculator;
 import christmas.view.OutputView;
 

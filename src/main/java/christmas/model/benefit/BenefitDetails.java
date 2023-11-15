@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.model.benefit;
 
 import java.util.Collections;
 import java.util.Map;

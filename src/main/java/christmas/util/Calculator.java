@@ -1,14 +1,14 @@
 package christmas.util;
 
-import christmas.model.BenefitAmount;
-import christmas.model.BenefitDetails;
-import christmas.model.BenefitInformation;
-import christmas.model.DiscountPolicy;
-import christmas.model.Menu;
-import christmas.model.OrderAmount;
-import christmas.model.OrderList;
-import christmas.model.PayAmount;
-import christmas.model.OrderInformation;
+import christmas.model.benefit.BenefitAmount;
+import christmas.model.benefit.BenefitDetails;
+import christmas.model.benefit.BenefitInformation;
+import christmas.model.benefit.DiscountPolicy;
+import christmas.model.menu.Menu;
+import christmas.model.order.OrderAmount;
+import christmas.model.order.OrderList;
+import christmas.model.payment.PayAmount;
+import christmas.model.order.OrderInformation;
 import java.util.Map;
 
 public class Calculator {

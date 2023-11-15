@@ -1,8 +1,8 @@
 package christmas.controller;
 
-import christmas.model.Badge;
-import christmas.model.BadgeDetails;
-import christmas.model.BenefitInformation;
+import christmas.model.badge.Badge;
+import christmas.model.badge.BadgeDetails;
+import christmas.model.benefit.BenefitInformation;
 import christmas.view.OutputView;
 
 public class BadgeController {

@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.model.benefit;
 
 public enum DiscountPolicy {
     CHRISTMAS_D_DAY_DISCOUNT("크리스마스 디데이 할인"),

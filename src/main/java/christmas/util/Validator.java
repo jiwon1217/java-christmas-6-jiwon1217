@@ -1,7 +1,7 @@
 package christmas.util;
 
-import christmas.model.Category;
-import christmas.model.Menu;
+import christmas.model.menu.Category;
+import christmas.model.menu.Menu;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;

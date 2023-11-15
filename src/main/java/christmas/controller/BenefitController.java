@@ -1,11 +1,11 @@
 package christmas.controller;
 
-import christmas.model.BenefitDetails;
-import christmas.model.DiscountPolicy;
-import christmas.model.GiveawayDetails;
-import christmas.model.OrderList;
-import christmas.model.OrderInformation;
-import christmas.model.VisitDate;
+import christmas.model.benefit.BenefitDetails;
+import christmas.model.benefit.DiscountPolicy;
+import christmas.model.giveaway.GiveawayDetails;
+import christmas.model.order.OrderList;
+import christmas.model.order.OrderInformation;
+import christmas.model.order.VisitDate;
 import christmas.util.BenefitCalculator;
 import christmas.view.OutputView;
 import java.util.EnumMap;

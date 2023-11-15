@@ -1,9 +1,9 @@
 package christmas.controller;
 
-import christmas.model.OrderAmount;
-import christmas.model.OrderList;
-import christmas.model.OrderInformation;
-import christmas.model.VisitDate;
+import christmas.model.order.OrderAmount;
+import christmas.model.order.OrderList;
+import christmas.model.order.OrderInformation;
+import christmas.model.order.VisitDate;
 import christmas.util.Calculator;
 import christmas.util.Parser;
 import christmas.view.InputView;

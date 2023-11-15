@@ -1,7 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.model.VisitDate;
+import christmas.model.order.VisitDate;
 import christmas.util.Validator;
 
 public class InputView {

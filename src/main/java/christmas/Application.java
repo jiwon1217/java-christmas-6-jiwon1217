@@ -6,10 +6,10 @@ import christmas.controller.BenefitController;
 import christmas.controller.GiveawayController;
 import christmas.controller.OrderController;
 import christmas.controller.PaymentController;
-import christmas.model.BenefitDetails;
-import christmas.model.BenefitInformation;
-import christmas.model.GiveawayDetails;
-import christmas.model.OrderInformation;
+import christmas.model.benefit.BenefitDetails;
+import christmas.model.benefit.BenefitInformation;
+import christmas.model.giveaway.GiveawayDetails;
+import christmas.model.order.OrderInformation;
 
 public class Application {
     public static void main(String[] args) {

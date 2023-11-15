@@ -1,15 +1,15 @@
 package christmas.view;
 
-import christmas.model.BadgeDetails;
-import christmas.model.BenefitAmount;
-import christmas.model.BenefitDetails;
-import christmas.model.DiscountPolicy;
-import christmas.model.GiveawayDetails;
-import christmas.model.Menu;
-import christmas.model.OrderAmount;
-import christmas.model.OrderList;
-import christmas.model.PayAmount;
-import christmas.model.VisitDate;
+import christmas.model.badge.BadgeDetails;
+import christmas.model.benefit.BenefitAmount;
+import christmas.model.benefit.BenefitDetails;
+import christmas.model.benefit.DiscountPolicy;
+import christmas.model.giveaway.GiveawayDetails;
+import christmas.model.menu.Menu;
+import christmas.model.order.OrderAmount;
+import christmas.model.order.OrderList;
+import christmas.model.payment.PayAmount;
+import christmas.model.order.VisitDate;
 import christmas.util.CurrencyFormatter;
 import java.util.Map;
 

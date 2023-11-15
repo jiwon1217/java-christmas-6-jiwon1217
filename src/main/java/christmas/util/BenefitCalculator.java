@@ -1,8 +1,8 @@
 package christmas.util;
 
-import christmas.model.Category;
-import christmas.model.OrderList;
-import christmas.model.VisitDate;
+import christmas.model.menu.Category;
+import christmas.model.order.OrderList;
+import christmas.model.order.VisitDate;
 import java.time.LocalDate;
 
 public class BenefitCalculator {

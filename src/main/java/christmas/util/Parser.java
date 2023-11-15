@@ -1,7 +1,7 @@
 package christmas.util;
 
-import christmas.model.Menu;
-import christmas.model.OrderList;
+import christmas.model.menu.Menu;
+import christmas.model.order.OrderList;
 import java.util.EnumMap;
 import java.util.Map;
 

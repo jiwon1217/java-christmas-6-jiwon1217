@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.model.menu;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,8 +1,8 @@
 package christmas.controller;
 
-import christmas.model.GiveawayDetails;
-import christmas.model.Menu;
-import christmas.model.OrderInformation;
+import christmas.model.giveaway.GiveawayDetails;
+import christmas.model.menu.Menu;
+import christmas.model.order.OrderInformation;
 import christmas.view.OutputView;
 import java.util.EnumMap;
 import java.util.Map;
