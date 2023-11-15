@@ -6,9 +6,9 @@ import christmas.model.benefit.BenefitInformation;
 import christmas.view.OutputView;
 
 public class BadgeController {
-    private static int SANTA_BADGE_THRESHOLD = 20_000;
-    private static int TREE_BADGE_THRESHOLD = 10_000;
-    private static int STAR_BADGE_THRESHOLD = 5_000;
+    private static final int SANTA_BADGE_THRESHOLD = 20_000;
+    private static final int TREE_BADGE_THRESHOLD = 10_000;
+    private static final int STAR_BADGE_THRESHOLD = 5_000;
 
     public void give(BenefitInformation benefitInformation) {
         int amount = benefitInformation.getBenefitAmount();
