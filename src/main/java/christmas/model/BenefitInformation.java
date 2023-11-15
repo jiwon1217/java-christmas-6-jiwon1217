@@ -8,4 +8,12 @@ public class BenefitInformation {
         this.benefitDetails = benefitDetails;
         this.benefitAmount = benefitAmount;
     }
+
+    public BenefitDetails getBenefitDetails() {
+        return benefitDetails;
+    }
+
+    public int getBenefitAmount() {
+        return benefitAmount.benefitAmount();
+    }
 }

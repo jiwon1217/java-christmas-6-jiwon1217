@@ -3,7 +3,6 @@ package christmas.controller;
 import christmas.model.BenefitDetails;
 import christmas.model.DiscountPolicy;
 import christmas.model.GiveawayDetails;
-import christmas.model.OrderAmount;
 import christmas.model.OrderList;
 import christmas.model.PaymentInformation;
 import christmas.model.VisitDate;
@@ -20,7 +19,7 @@ public class BenefitController {
     private static final int BENEFIT_THRESHOLD = 10_000;
 
     public BenefitDetails apply(PaymentInformation paymentInformation, GiveawayDetails giveawayDetails) {
-        OrderAmount orderAmount = paymentInformation.orderAmount();
+        int orderAmount = paymentInformation.getOrderAmount();
         VisitDate visitDate = paymentInformation.visitDate();
 
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);
@@ -35,8 +34,8 @@ public class BenefitController {
         return benefitDetails;
     }
 
-    private boolean isPossibleBenefit(OrderAmount orderAmount) {
-        return orderAmount.orderAmount() >= BENEFIT_THRESHOLD;
+    private boolean isPossibleBenefit(int orderAmount) {
+        return orderAmount >= BENEFIT_THRESHOLD;
     }
 
     private boolean isPossibleGiveawayEvent(GiveawayDetails giveawayDetails) {
