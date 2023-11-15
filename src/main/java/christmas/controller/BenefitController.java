@@ -12,7 +12,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class BenefitController {
-    public BenefitDetails apply(OrderInformation orderInformation, GiveawayDetails giveawayDetails) {
+    public BenefitDetails apply(OrderInformation orderInformation) {
         int amount = orderInformation.orderAmount();
         VisitDate visitDate = orderInformation.visitDate();
 
