@@ -12,7 +12,7 @@ public class InputView {
         throw new IllegalArgumentException();
     }
 
-    public static VisitDate askVisitDate() {
+    public static int askVisitDate() {
         try {
             System.out.println(ASK_VISIT_DATE);
             String input = Console.readLine();
@@ -20,7 +20,7 @@ public class InputView {
             Validator.validateVisitDay(input);
             int visitDay = Integer.parseInt(input);
 
-            return new VisitDate(visitDay);
+            return visitDay;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askVisitDate();

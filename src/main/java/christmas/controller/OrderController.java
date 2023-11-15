@@ -12,10 +12,9 @@ import christmas.view.OutputView;
 public class OrderController {
     public OrderInformation order() {
         OutputView.printGreeting();
-        VisitDate visitDate = InputView.askVisitDate();
 
-        String orderMenu = InputView.askOrderMenu();
-        OrderList orderList = Parser.parseStringToOrderList(orderMenu);
+        VisitDate visitDate = new VisitDate(InputView.askVisitDate());
+        OrderList orderList = Parser.parseStringToOrderList(InputView.askOrderMenu());
 
         OutputView.printBenefitPreviewInformation(visitDate);
         OutputView.printOrderList(orderList);
