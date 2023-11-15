@@ -41,18 +41,25 @@ public class AmountCalculator {
     public static PayAmount calculatePayAmount(OrderInformation orderInformation,
                                                BenefitInformation benefitInformation) {
         BenefitDetails benefitDetails = benefitInformation.getBenefitDetails();
+        int orderAmount = orderInformation.orderAmount();
 
         if (benefitDetails.isEmpty()) {
-            return new PayAmount(orderInformation.orderAmount());
-        }
-        if (benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT) == null) {
-            return new PayAmount(orderInformation.orderAmount() - benefitInformation.getBenefitAmount());
+            return new PayAmount(orderAmount);
         }
 
-        int giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
-        int amount =
-                orderInformation.orderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
+        int benefitAmount = benefitInformation.getBenefitAmount();
+        Integer giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
 
-        return new PayAmount(amount);
+        return calculatePayAmountWithGiveaway(orderAmount, benefitAmount, giveawayAmount);
+    }
+
+    private static PayAmount calculatePayAmountWithGiveaway(int orderAmount, int benefitAmount,
+                                                            Integer giveawayAmount) {
+        if (giveawayAmount == null) {
+            return new PayAmount(orderAmount - benefitAmount);
+        }
+
+        int totalAmount = orderAmount - benefitAmount + giveawayAmount;
+        return new PayAmount(totalAmount);
     }
 }
