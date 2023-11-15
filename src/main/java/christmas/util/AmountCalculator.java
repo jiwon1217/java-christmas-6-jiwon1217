@@ -6,12 +6,17 @@ import christmas.model.benefit.BenefitInformation;
 import christmas.model.benefit.DiscountPolicy;
 import christmas.model.menu.Menu;
 import christmas.model.order.OrderAmount;
+import christmas.model.order.OrderInformation;
 import christmas.model.order.OrderList;
 import christmas.model.payment.PayAmount;
-import christmas.model.order.OrderInformation;
 import java.util.Map;
 
 public class AmountCalculator {
+
+    private AmountCalculator() {
+        throw new IllegalArgumentException();
+    }
+
     public static OrderAmount calculateOrderAmount(OrderList orderList) {
         int amount = 0;
 

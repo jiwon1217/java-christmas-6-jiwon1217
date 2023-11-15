@@ -8,8 +8,8 @@ import christmas.model.giveaway.GiveawayDetails;
 import christmas.model.menu.Menu;
 import christmas.model.order.OrderAmount;
 import christmas.model.order.OrderList;
-import christmas.model.payment.PayAmount;
 import christmas.model.order.VisitDate;
+import christmas.model.payment.PayAmount;
 import christmas.util.CurrencyFormatter;
 import java.util.Map;
 
@@ -30,6 +30,10 @@ public class OutputView {
     private static final String BLANK = " ";
     private static final String MINUS = "-";
     private static final String DELIMITER = ":";
+
+    private OutputView() {
+        throw new IllegalArgumentException();
+    }
 
     public static void printGreeting() {
         System.out.println(GREETING);

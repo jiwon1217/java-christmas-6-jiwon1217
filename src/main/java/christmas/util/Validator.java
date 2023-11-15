@@ -17,6 +17,10 @@ public class Validator {
     private static final String QUANTITY_DELIMITER = "-";
     private static final int ORDER_THRESHOLD = 20;
 
+    private Validator() {
+        throw new IllegalArgumentException();
+    }
+
     public static void validateVisitDay(String input) {
         if (!isBetween1And31(input)) {
             throw new IllegalArgumentException(INVALID_DATE_RETRY_INPUT);

@@ -13,6 +13,10 @@ public class BenefitCalculator {
     private static final int DAY_DISCOUNT_AMOUNT = 2023;
     private static final int SPECIAL_DISCOUNT_AMOUNT = 1000;
 
+    private BenefitCalculator() {
+        throw new IllegalArgumentException();
+    }
+
     public static int calculateGiveawayEvent() {
         return GIVEAWAY_AMOUNT;
     }

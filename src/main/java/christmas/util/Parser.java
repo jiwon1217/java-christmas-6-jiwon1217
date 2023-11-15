@@ -9,6 +9,10 @@ public class Parser {
     private static final String MENU_DELIMITER = ",";
     private static final String QUANTITY_DELIMITER = "-";
 
+    private Parser() {
+        throw new IllegalArgumentException();
+    }
+
     public static OrderList parseStringToOrderList(String input) {
         Map<Menu, Integer> orderList = new EnumMap<>(Menu.class);
         String[] orderMenus = input.split(MENU_DELIMITER);
