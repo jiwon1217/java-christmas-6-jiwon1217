@@ -41,7 +41,7 @@ public class BenefitController {
     }
 
     private void applyChristmasDDayDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
-        if (visitDate.getDay() <= 25) {
+        if (visitDate.isChristmas()) {
             benefitDetails.put(DiscountPolicy.CHRISTMAS_D_DAY_DISCOUNT,
                     BenefitCalculator.calculateChristmasDDayDiscount(visitDate));
         }

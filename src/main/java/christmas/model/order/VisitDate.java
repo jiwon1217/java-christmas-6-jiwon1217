@@ -26,6 +26,10 @@ public class VisitDate {
     }
 
     public boolean isSpecialDay() {
-        return this.getDayOfTheWeek() == SUNDAY || this.getDay() == CHRISTMAS_DAY;
+        return this.getDayOfTheWeek() == SUNDAY || isChristmas();
+    }
+
+    public boolean isChristmas() {
+        return this.getDay() == CHRISTMAS_DAY;
     }
 }
