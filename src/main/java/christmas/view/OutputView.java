@@ -19,7 +19,7 @@ public class OutputView {
     }
 
     public static void printBenefitPreviewInformation(VisitDate visitDate) {
-        System.out.println("12월" + visitDate.getDay() + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println("12월" + " " + visitDate.getDay() + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     public static void printOrderList(OrderList orderList) {
@@ -57,7 +57,7 @@ public class OutputView {
 
     public static void printBenefitDetails(BenefitDetails benefitDetails) {
         System.out.println();
-        System.out.println("<헤택 내역>");
+        System.out.println("<혜택 내역>");
 
         if (benefitDetails.isEmpty()) {
             System.out.println("없음");
@@ -68,14 +68,22 @@ public class OutputView {
             DiscountPolicy discountPolicy = benefit.getKey();
             int benefitAmount = benefit.getValue();
             System.out.println(
-                    discountPolicy.getName() + " " + ":" + "-" + CurrencyFormatter.changeFormat(benefitAmount) + "원");
+                    discountPolicy.getName() + " " + ":" + " " + "-" + CurrencyFormatter.changeFormat(benefitAmount)
+                            + "원");
         }
     }
 
     public static void printBenefitAmount(BenefitAmount benefitAmount) {
         System.out.println();
         System.out.println("<총혜택 금액>");
-        System.out.println("-" + CurrencyFormatter.changeFormat(benefitAmount.benefitAmount()) + "원");
+
+        int amount = benefitAmount.benefitAmount();
+
+        if (benefitAmount.benefitAmount() > 0) {
+            System.out.println("-" + CurrencyFormatter.changeFormat(amount) + "원");
+            return;
+        }
+        System.out.println(amount + "원");
     }
 
     public static void printPayAmount(PayAmount payAmount) {
