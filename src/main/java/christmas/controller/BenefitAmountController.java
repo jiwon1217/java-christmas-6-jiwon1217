@@ -7,7 +7,7 @@ import christmas.util.AmountCalculator;
 import christmas.view.OutputView;
 
 public class BenefitAmountController {
-    public BenefitInformation getBenefitAmount(BenefitDetails benefitDetails) {
+    public BenefitInformation apply(BenefitDetails benefitDetails) {
         BenefitAmount amount = AmountCalculator.calculateBenefitAmount(benefitDetails);
 
         OutputView.printBenefitAmount(amount);

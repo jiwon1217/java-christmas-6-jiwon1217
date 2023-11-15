@@ -19,7 +19,7 @@ public class Application {
 
         BenefitDetails benefitDetails = new BenefitController().apply(orderInformation, giveawayDetails);
 
-        BenefitInformation benefitInformation = new BenefitAmountController().getBenefitAmount(benefitDetails);
+        BenefitInformation benefitInformation = new BenefitAmountController().apply(benefitDetails);
 
         new PaymentController().pay(orderInformation, benefitInformation);
         new BadgeController().give(benefitInformation);
