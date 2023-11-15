@@ -14,53 +14,70 @@ import christmas.util.CurrencyFormatter;
 import java.util.Map;
 
 public class OutputView {
+    private static final String GREETING = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
+    private static final String DECEMBER = "12월";
+    private static final String BENEFIT_PREVIEW = "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private static final String ORDER_MENU = "<주문 메뉴>";
+    private static final String TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
+    private static final String GIVEAWAY_MENU = "<증정 메뉴>";
+    private static final String BENEFIT_DETAILS = "<혜택 내역>";
+    private static final String TOTAL_BENEFIT_AMOUNT = "<총혜택 금액>";
+    private static final String DECEMBER_EVENT_BADGE = "<12월 이벤트 배지>";
+    private static final String TOTAL_PAY_AMOUNT_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
+    private static final String QUANTITY = "개";
+    private static final String WON = "원";
+    private static final String NONE = "없음";
+    private static final String BLANK = " ";
+    private static final String MINUS = "-";
+    private static final String DELIMITER = ":";
+
     public static void printGreeting() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        System.out.println(GREETING);
     }
 
     public static void printBenefitPreviewInformation(VisitDate visitDate) {
-        System.out.println("12월" + " " + visitDate.getDay() + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println(DECEMBER + BLANK + visitDate.getDay() + BENEFIT_PREVIEW);
     }
 
     public static void printOrderList(OrderList orderList) {
         System.out.println();
-        System.out.println("<주문 메뉴>");
+        System.out.println(ORDER_MENU);
 
         for (Map.Entry<Menu, Integer> orderMenu : orderList.get().entrySet()) {
             Menu menu = orderMenu.getKey();
             int amount = orderMenu.getValue();
-            System.out.println(menu.getName() + " " + amount + "개");
+            System.out.println(menu.getName() + BLANK + amount + QUANTITY);
         }
     }
 
     public static void printOrderAmount(OrderAmount orderAmount) {
         System.out.println();
-        System.out.println("<할인 전 총주문 금액>");
-        System.out.println(CurrencyFormatter.changeFormat(orderAmount.orderAmount()) + "원");
+        System.out.println(TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT);
+        System.out.println(CurrencyFormatter.changeFormat(orderAmount.orderAmount()) + WON);
     }
 
     public static void printGiveawayDetails(GiveawayDetails giveawayDetails) {
         System.out.println();
-        System.out.println("<증정 메뉴>");
+        System.out.println(GIVEAWAY_MENU);
 
         if (giveawayDetails.isEmpty()) {
-            System.out.println("없음");
+            System.out.println(NONE);
             return;
         }
 
         for (Map.Entry<Menu, Integer> giveaway : giveawayDetails.get().entrySet()) {
             Menu menu = giveaway.getKey();
             int quantity = giveaway.getValue();
-            System.out.println(menu.getName() + " " + quantity + "개");
+            System.out.println(menu.getName() + BLANK + quantity + QUANTITY);
         }
     }
 
     public static void printBenefitDetails(BenefitDetails benefitDetails) {
         System.out.println();
-        System.out.println("<혜택 내역>");
+        System.out.println(BENEFIT_DETAILS);
 
         if (benefitDetails.isEmpty()) {
-            System.out.println("없음");
+            System.out.println(NONE);
             return;
         }
 
@@ -68,33 +85,34 @@ public class OutputView {
             DiscountPolicy discountPolicy = benefit.getKey();
             int benefitAmount = benefit.getValue();
             System.out.println(
-                    discountPolicy.getName() + " " + ":" + " " + "-" + CurrencyFormatter.changeFormat(benefitAmount)
-                            + "원");
+                    discountPolicy.getName() + BLANK + DELIMITER + BLANK + MINUS + CurrencyFormatter.changeFormat(
+                            benefitAmount)
+                            + WON);
         }
     }
 
     public static void printBenefitAmount(BenefitAmount benefitAmount) {
         System.out.println();
-        System.out.println("<총혜택 금액>");
+        System.out.println(TOTAL_BENEFIT_AMOUNT);
 
         int amount = benefitAmount.benefitAmount();
 
         if (benefitAmount.benefitAmount() > 0) {
-            System.out.println("-" + CurrencyFormatter.changeFormat(amount) + "원");
+            System.out.println(MINUS + CurrencyFormatter.changeFormat(amount) + WON);
             return;
         }
-        System.out.println(amount + "원");
+        System.out.println(amount + WON);
     }
 
     public static void printPayAmount(PayAmount payAmount) {
         System.out.println();
-        System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(CurrencyFormatter.changeFormat(payAmount.payAmount()) + "원");
+        System.out.println(TOTAL_PAY_AMOUNT_AFTER_DISCOUNT);
+        System.out.println(CurrencyFormatter.changeFormat(payAmount.payAmount()) + WON);
     }
 
     public static void printBadgeDetails(BadgeDetails badgeDetails) {
         System.out.println();
-        System.out.println("<12월 이벤트 배지>");
+        System.out.println(DECEMBER_EVENT_BADGE);
         System.out.println(badgeDetails.get());
     }
 }

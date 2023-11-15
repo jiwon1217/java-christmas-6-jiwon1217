@@ -9,7 +9,6 @@ import christmas.controller.PaymentController;
 import christmas.model.BenefitDetails;
 import christmas.model.BenefitInformation;
 import christmas.model.GiveawayDetails;
-import christmas.model.PayAmount;
 import christmas.model.PaymentInformation;
 
 public class Application {

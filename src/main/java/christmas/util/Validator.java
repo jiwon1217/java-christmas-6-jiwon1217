@@ -10,10 +10,16 @@ import java.util.regex.Pattern;
 public class Validator {
     private static final Pattern BETWEEN_1_AND_31_REGEX = Pattern.compile("^(?:[1-9]|[12]\\d|3[01])$");
     private static final Pattern ORDER_MENU_REGEX = Pattern.compile("^[가-힣]+-\\d+(,[가-힣]+-\\d+)*$");
+    private static final Pattern MENU_PATTERN = Pattern.compile("([가-힣]+)-(\\d+)");
+    private static final String INVALID_DATE_RETRY_INPUT = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    private static final String INVALID_ORDER_RETRY_INPUT = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    private static final String MENU_DELIMITER = ",";
+    private static final String QUANTITY_DELIMITER = "-";
+    private static final int ORDER_THRESHOLD = 20;
 
     public static void validateVisitDay(String input) {
         if (!isBetween1And31(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_DATE_RETRY_INPUT);
         }
     }
 
@@ -31,7 +37,7 @@ public class Validator {
 
     private static void validateInputFormat(String input) {
         if (!isValidInputFormat(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
         }
     }
 
@@ -40,14 +46,13 @@ public class Validator {
     }
 
     private static void validateExistMenu(String input) {
-        Pattern menuPattern = Pattern.compile("([가-힣]+)-\\d");
-        Matcher menuMatcher = menuPattern.matcher(input);
+        Matcher menuMatcher = MENU_PATTERN.matcher(input);
 
         while (menuMatcher.find()) {
             String menu = menuMatcher.group(1);
 
             if (isNotExistMenu(menu)) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
             }
         }
     }
@@ -57,14 +62,13 @@ public class Validator {
     }
 
     private static void validateAmount(String input) {
-        if (calculateAmount(input) > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        if (calculateAmount(input) > ORDER_THRESHOLD) {
+            throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
         }
     }
 
     private static int calculateAmount(String input) {
-        Pattern menuPattern = Pattern.compile("([가-힣]+)-(\\d+)");
-        Matcher menuMatcher = menuPattern.matcher(input);
+        Matcher menuMatcher = MENU_PATTERN.matcher(input);
         int sum = 0;
 
         while (menuMatcher.find()) {
@@ -76,16 +80,16 @@ public class Validator {
 
     private static void validateDuplicateMenu(String input) {
         if (hasDuplicateMenu(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
         }
     }
 
     private static boolean hasDuplicateMenu(String input) {
         Set<String> uniqueOrderMenus = new HashSet<>();
-        String[] orderMenus = input.split(",");
+        String[] orderMenus = input.split(MENU_DELIMITER);
 
         for (String orderMenu : orderMenus) {
-            String menu = orderMenu.split("-")[0];
+            String menu = orderMenu.split(QUANTITY_DELIMITER)[0];
 
             if (!uniqueOrderMenus.add(menu)) {
                 return true;
@@ -96,15 +100,15 @@ public class Validator {
 
     private static void validateOnlyOrderBeverage(String input) {
         if (isBeverageOnlyOrder(input)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(INVALID_ORDER_RETRY_INPUT);
         }
     }
 
     private static boolean isBeverageOnlyOrder(String input) {
-        String[] orderMenus = input.split(",");
+        String[] orderMenus = input.split(MENU_DELIMITER);
 
         for (String orderMenu : orderMenus) {
-            String menuName = orderMenu.split("-")[0];
+            String menuName = orderMenu.split(QUANTITY_DELIMITER)[0];
             Menu menu = Menu.getMenu(menuName);
 
             if (menu.getCategory() != Category.BEVERAGE) {
