@@ -5,21 +5,21 @@ import java.util.Collections;
 import java.util.Map;
 
 public class GiveawayDetails {
-    private final Map<Menu, Integer> giveawayDetails;
+    private final Map<Menu, Integer> details;
 
-    public GiveawayDetails(Map<Menu, Integer> giveawayDetails) {
-        this.giveawayDetails = giveawayDetails;
+    public GiveawayDetails(Map<Menu, Integer> details) {
+        this.details = details;
     }
 
     public Map<Menu, Integer> of() {
-        return Collections.unmodifiableMap(giveawayDetails);
+        return Collections.unmodifiableMap(details);
     }
 
     public void put(Menu menu, Integer quantity) {
-        giveawayDetails.put(menu, quantity);
+        details.put(menu, quantity);
     }
 
     public boolean isEmpty() {
-        return giveawayDetails.isEmpty();
+        return details.isEmpty();
     }
 }
