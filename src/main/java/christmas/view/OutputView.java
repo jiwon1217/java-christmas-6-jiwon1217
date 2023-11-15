@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.model.BadgeDetails;
 import christmas.model.BenefitAmount;
 import christmas.model.BenefitDetails;
 import christmas.model.DiscountPolicy;
@@ -81,5 +82,11 @@ public class OutputView {
         System.out.println();
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(CurrencyFormatter.changeFormat(payAmount.payAmount()) + "원");
+    }
+
+    public static void printBadgeDetails(BadgeDetails badgeDetails) {
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badgeDetails.get());
     }
 }
