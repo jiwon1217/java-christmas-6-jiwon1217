@@ -19,7 +19,7 @@ public class OrderInformation {
         return orderList;
     }
 
-    public int getOrderAmount() {
+    public int orderAmount() {
         return orderAmount.amount();
     }
 }

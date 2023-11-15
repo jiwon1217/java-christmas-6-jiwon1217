@@ -19,7 +19,7 @@ public class BenefitController {
     private static final int BENEFIT_THRESHOLD = 10_000;
 
     public BenefitDetails apply(OrderInformation orderInformation, GiveawayDetails giveawayDetails) {
-        int amount = orderInformation.getOrderAmount();
+        int amount = orderInformation.orderAmount();
         VisitDate visitDate = orderInformation.visitDate();
 
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);

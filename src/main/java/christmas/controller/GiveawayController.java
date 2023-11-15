@@ -12,7 +12,7 @@ public class GiveawayController {
     private static final int GIVEAWAY_QUANTITY = 1;
 
     public GiveawayDetails give(OrderInformation orderInformation) {
-        int amount = orderInformation.getOrderAmount();
+        int amount = orderInformation.orderAmount();
 
         Map<Menu, Integer> giveawayInformation = new EnumMap<>(Menu.class);
         GiveawayDetails giveawayDetails = new GiveawayDetails(giveawayInformation);

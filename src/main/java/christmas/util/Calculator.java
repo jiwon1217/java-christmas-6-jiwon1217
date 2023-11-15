@@ -38,12 +38,12 @@ public class Calculator {
         BenefitDetails benefitDetails = benefitInformation.getBenefitDetails();
 
         if (benefitDetails.isEmpty()) {
-            return new PayAmount(orderInformation.getOrderAmount());
+            return new PayAmount(orderInformation.orderAmount());
         }
 
         int giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
         int amount =
-                orderInformation.getOrderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
+                orderInformation.orderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
 
         return new PayAmount(amount);
     }
