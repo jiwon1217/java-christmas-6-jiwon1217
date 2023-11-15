@@ -4,66 +4,36 @@ import christmas.model.badge.Badge;
 import christmas.model.badge.BadgeDetails;
 import christmas.model.benefit.BenefitInformation;
 import christmas.view.OutputView;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BadgeController {
     private static final int SANTA_BADGE_THRESHOLD = 20_000;
     private static final int TREE_BADGE_THRESHOLD = 10_000;
     private static final int STAR_BADGE_THRESHOLD = 5_000;
 
+    private static final Map<Integer, Badge> THRESHOLD_TO_BADGE = new HashMap<>();
+
+    static {
+        THRESHOLD_TO_BADGE.put(SANTA_BADGE_THRESHOLD, Badge.SANTA);
+        THRESHOLD_TO_BADGE.put(TREE_BADGE_THRESHOLD, Badge.TREE);
+        THRESHOLD_TO_BADGE.put(STAR_BADGE_THRESHOLD, Badge.STAR);
+    }
+
     public void give(BenefitInformation benefitInformation) {
         int amount = benefitInformation.getBenefitAmount();
 
-        getBadge(amount);
+        Badge badge = getBadge(amount);
+        BadgeDetails badgeDetails = new BadgeDetails(badge);
+
+        OutputView.printBadgeDetails(badgeDetails);
     }
 
-    private static void getBadge(int amount) {
-        getSantaBadge(amount);
-        getTreeBadge(amount);
-        getStarBadge(amount);
-        getNoneBadge(amount);
-    }
-
-    private static void getSantaBadge(int amount) {
-        if (isPossibleSantaBadge(amount)) {
-            BadgeDetails badgeDetails = new BadgeDetails(Badge.SANTA);
-            OutputView.printBadgeDetails(badgeDetails);
-        }
-    }
-
-    private static void getTreeBadge(int amount) {
-        if (isPossibleTreeBadge(amount)) {
-            BadgeDetails badgeDetails = new BadgeDetails(Badge.TREE);
-            OutputView.printBadgeDetails(badgeDetails);
-        }
-    }
-
-    private static void getStarBadge(int amount) {
-        if (isPossibleStarBadge(amount)) {
-            BadgeDetails badgeDetails = new BadgeDetails(Badge.STAR);
-            OutputView.printBadgeDetails(badgeDetails);
-        }
-    }
-
-    private static void getNoneBadge(int amount) {
-        if (isCannotGetAnyBadge(amount)) {
-            BadgeDetails badgeDetails = new BadgeDetails(Badge.NONE);
-            OutputView.printBadgeDetails(badgeDetails);
-        }
-    }
-
-    private static boolean isCannotGetAnyBadge(int amount) {
-        return amount < STAR_BADGE_THRESHOLD;
-    }
-
-    private static boolean isPossibleStarBadge(int amount) {
-        return amount >= STAR_BADGE_THRESHOLD && amount < TREE_BADGE_THRESHOLD;
-    }
-
-    private static boolean isPossibleTreeBadge(int amount) {
-        return amount >= TREE_BADGE_THRESHOLD && amount < SANTA_BADGE_THRESHOLD;
-    }
-
-    private static boolean isPossibleSantaBadge(int amount) {
-        return amount >= SANTA_BADGE_THRESHOLD;
+    private Badge getBadge(int amount) {
+        return THRESHOLD_TO_BADGE.entrySet().stream()
+                .filter(entry -> amount >= entry.getKey())
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElse(Badge.NONE);
     }
 }
