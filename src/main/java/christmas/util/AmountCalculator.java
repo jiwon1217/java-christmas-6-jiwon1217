@@ -11,7 +11,7 @@ import christmas.model.payment.PayAmount;
 import christmas.model.order.OrderInformation;
 import java.util.Map;
 
-public class Calculator {
+public class AmountCalculator {
     public static OrderAmount calculateOrderAmount(OrderList orderList) {
         int amount = 0;
 
