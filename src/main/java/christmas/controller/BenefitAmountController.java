@@ -8,10 +8,10 @@ import christmas.view.OutputView;
 
 public class BenefitAmountController {
     public BenefitInformation getBenefitAmount(BenefitDetails benefitDetails) {
-        BenefitAmount benefitAmount = Calculator.calculateBenefitAmount(benefitDetails);
+        BenefitAmount amount = Calculator.calculateBenefitAmount(benefitDetails);
 
-        OutputView.printBenefitAmount(benefitAmount);
+        OutputView.printBenefitAmount(amount);
 
-        return new BenefitInformation(benefitDetails, benefitAmount);
+        return new BenefitInformation(benefitDetails, amount);
     }
 }

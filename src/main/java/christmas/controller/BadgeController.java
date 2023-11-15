@@ -11,59 +11,59 @@ public class BadgeController {
     private static int STAR_BADGE_THRESHOLD = 5_000;
 
     public void give(BenefitInformation benefitInformation) {
-        int benefitAmount = benefitInformation.getBenefitAmount();
+        int amount = benefitInformation.getBenefitAmount();
 
-        getBadge(benefitAmount);
+        getBadge(amount);
     }
 
-    private static void getBadge(int benefitAmount) {
-        getSantaBadge(benefitAmount);
-        getTreeBadge(benefitAmount);
-        getStarBadge(benefitAmount);
-        getNoneBadge(benefitAmount);
+    private static void getBadge(int amount) {
+        getSantaBadge(amount);
+        getTreeBadge(amount);
+        getStarBadge(amount);
+        getNoneBadge(amount);
     }
 
-    private static void getSantaBadge(int benefitAmount) {
-        if (isPossibleSantaBadge(benefitAmount)) {
+    private static void getSantaBadge(int amount) {
+        if (isPossibleSantaBadge(amount)) {
             BadgeDetails badgeDetails = new BadgeDetails(Badge.SANTA);
             OutputView.printBadgeDetails(badgeDetails);
         }
     }
 
-    private static void getTreeBadge(int benefitAmount) {
-        if (isPossibleTreeBadge(benefitAmount)) {
+    private static void getTreeBadge(int amount) {
+        if (isPossibleTreeBadge(amount)) {
             BadgeDetails badgeDetails = new BadgeDetails(Badge.TREE);
             OutputView.printBadgeDetails(badgeDetails);
         }
     }
 
-    private static void getStarBadge(int benefitAmount) {
-        if (isPossibleStarBadge(benefitAmount)) {
+    private static void getStarBadge(int amount) {
+        if (isPossibleStarBadge(amount)) {
             BadgeDetails badgeDetails = new BadgeDetails(Badge.STAR);
             OutputView.printBadgeDetails(badgeDetails);
         }
     }
 
-    private static void getNoneBadge(int benefitAmount) {
-        if (isCannotGetAnyBadge(benefitAmount)) {
+    private static void getNoneBadge(int amount) {
+        if (isCannotGetAnyBadge(amount)) {
             BadgeDetails badgeDetails = new BadgeDetails(Badge.NONE);
             OutputView.printBadgeDetails(badgeDetails);
         }
     }
 
-    private static boolean isCannotGetAnyBadge(int benefitAmount) {
-        return benefitAmount < STAR_BADGE_THRESHOLD;
+    private static boolean isCannotGetAnyBadge(int amount) {
+        return amount < STAR_BADGE_THRESHOLD;
     }
 
-    private static boolean isPossibleStarBadge(int benefitAmount) {
-        return benefitAmount >= STAR_BADGE_THRESHOLD && benefitAmount < TREE_BADGE_THRESHOLD;
+    private static boolean isPossibleStarBadge(int amount) {
+        return amount >= STAR_BADGE_THRESHOLD && amount < TREE_BADGE_THRESHOLD;
     }
 
-    private static boolean isPossibleTreeBadge(int benefitAmount) {
-        return benefitAmount >= TREE_BADGE_THRESHOLD && benefitAmount < SANTA_BADGE_THRESHOLD;
+    private static boolean isPossibleTreeBadge(int amount) {
+        return amount >= TREE_BADGE_THRESHOLD && amount < SANTA_BADGE_THRESHOLD;
     }
 
-    private static boolean isPossibleSantaBadge(int benefitAmount) {
-        return benefitAmount >= SANTA_BADGE_THRESHOLD;
+    private static boolean isPossibleSantaBadge(int amount) {
+        return amount >= SANTA_BADGE_THRESHOLD;
     }
 }

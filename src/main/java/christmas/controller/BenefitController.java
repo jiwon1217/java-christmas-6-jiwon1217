@@ -19,13 +19,13 @@ public class BenefitController {
     private static final int BENEFIT_THRESHOLD = 10_000;
 
     public BenefitDetails apply(PaymentInformation paymentInformation, GiveawayDetails giveawayDetails) {
-        int orderAmount = paymentInformation.getOrderAmount();
+        int amount = paymentInformation.getOrderAmount();
         VisitDate visitDate = paymentInformation.visitDate();
 
         Map<DiscountPolicy, Integer> benefitInformation = new EnumMap<>(DiscountPolicy.class);
         BenefitDetails benefitDetails = new BenefitDetails(benefitInformation);
 
-        if (isPossibleBenefit(orderAmount)) {
+        if (isPossibleBenefit(amount)) {
             getGiveawayEvent(giveawayDetails, benefitDetails);
             getChristmasDDayAndSpecialDiscount(visitDate, benefitDetails);
             getWeekendOrWeekdayDiscount(visitDate, benefitDetails, paymentInformation.orderList());

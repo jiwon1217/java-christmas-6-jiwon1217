@@ -1,4 +1,4 @@
 package christmas.model;
 
-public record BenefitAmount(int benefitAmount) {
+public record BenefitAmount(int amount) {
 }

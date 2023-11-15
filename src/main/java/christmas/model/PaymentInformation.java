@@ -20,6 +20,6 @@ public class PaymentInformation {
     }
 
     public int getOrderAmount() {
-        return orderAmount.orderAmount();
+        return orderAmount.amount();
     }
 }

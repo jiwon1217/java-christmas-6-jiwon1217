@@ -14,6 +14,6 @@ public class BenefitInformation {
     }
 
     public int getBenefitAmount() {
-        return benefitAmount.benefitAmount();
+        return benefitAmount.amount();
     }
 }

@@ -54,7 +54,7 @@ public class OutputView {
     public static void printOrderAmount(OrderAmount orderAmount) {
         System.out.println();
         System.out.println(TOTAL_ORDER_AMOUNT_BEFORE_DISCOUNT);
-        System.out.println(CurrencyFormatter.changeFormat(orderAmount.orderAmount()) + WON);
+        System.out.println(CurrencyFormatter.changeFormat(orderAmount.amount()) + WON);
     }
 
     public static void printGiveawayDetails(GiveawayDetails giveawayDetails) {
@@ -96,9 +96,9 @@ public class OutputView {
         System.out.println();
         System.out.println(TOTAL_BENEFIT_AMOUNT);
 
-        int amount = benefitAmount.benefitAmount();
+        int amount = benefitAmount.amount();
 
-        if (benefitAmount.benefitAmount() > 0) {
+        if (amount > 0) {
             System.out.println(MINUS + CurrencyFormatter.changeFormat(amount) + WON);
             return;
         }
@@ -108,7 +108,7 @@ public class OutputView {
     public static void printPayAmount(PayAmount payAmount) {
         System.out.println();
         System.out.println(TOTAL_PAY_AMOUNT_AFTER_DISCOUNT);
-        System.out.println(CurrencyFormatter.changeFormat(payAmount.payAmount()) + WON);
+        System.out.println(CurrencyFormatter.changeFormat(payAmount.amount()) + WON);
     }
 
     public static void printBadgeDetails(BadgeDetails badgeDetails) {

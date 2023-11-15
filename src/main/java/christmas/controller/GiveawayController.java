@@ -12,12 +12,12 @@ public class GiveawayController {
     private static final int GIVEAWAY_QUANTITY = 1;
 
     public GiveawayDetails give(PaymentInformation paymentInformation) {
-        int orderAmount = paymentInformation.getOrderAmount();
+        int amount = paymentInformation.getOrderAmount();
 
         Map<Menu, Integer> giveawayInformation = new EnumMap<>(Menu.class);
         GiveawayDetails giveawayDetails = new GiveawayDetails(giveawayInformation);
 
-        if (isPossibleGive(orderAmount)) {
+        if (isPossibleGive(amount)) {
             getGiveaway(giveawayDetails);
         }
         OutputView.printGiveawayDetails(giveawayDetails);

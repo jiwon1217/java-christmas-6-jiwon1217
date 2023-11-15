@@ -20,9 +20,9 @@ public class OrderController {
         OutputView.printBenefitPreviewInformation(visitDate);
         OutputView.printOrderList(orderList);
 
-        OrderAmount orderAmount = Calculator.calculateOrderAmount(orderList);
-        OutputView.printOrderAmount(orderAmount);
+        OrderAmount amount = Calculator.calculateOrderAmount(orderList);
+        OutputView.printOrderAmount(amount);
 
-        return new PaymentInformation(visitDate, orderList, orderAmount);
+        return new PaymentInformation(visitDate, orderList, amount);
     }
 }

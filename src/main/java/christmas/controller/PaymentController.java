@@ -8,8 +8,8 @@ import christmas.view.OutputView;
 
 public class PaymentController {
     public void pay(PaymentInformation paymentInformation, BenefitInformation benefitInformation) {
-        PayAmount payAmount = Calculator.calculatePayAmount(paymentInformation, benefitInformation);
+        PayAmount amount = Calculator.calculatePayAmount(paymentInformation, benefitInformation);
 
-        OutputView.printPayAmount(payAmount);
+        OutputView.printPayAmount(amount);
     }
 }
