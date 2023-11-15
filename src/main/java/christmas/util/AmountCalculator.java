@@ -45,6 +45,9 @@ public class AmountCalculator {
         if (benefitDetails.isEmpty()) {
             return new PayAmount(orderInformation.orderAmount());
         }
+        if (benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT) == null) {
+            return new PayAmount(orderInformation.orderAmount() - benefitInformation.getBenefitAmount());
+        }
 
         int giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
         int amount =
