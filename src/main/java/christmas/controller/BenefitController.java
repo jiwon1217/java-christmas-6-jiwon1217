@@ -29,7 +29,7 @@ public class BenefitController {
         return benefitDetails;
     }
 
-    public void applyGiveawayEvent(BenefitDetails benefitDetails, GiveawayDetails giveawayDetails) {
+    private void applyGiveawayEvent(BenefitDetails benefitDetails, GiveawayDetails giveawayDetails) {
         if (!giveawayDetails.isEmpty()) {
             benefitDetails.put(DiscountPolicy.GIVEAWAY_EVENT, BenefitCalculator.calculateGiveawayEvent());
         }
@@ -40,14 +40,14 @@ public class BenefitController {
         applySpecialDiscount(benefitDetails, visitDate);
     }
 
-    public void applyChristmasDDayDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
+    private void applyChristmasDDayDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
         if (visitDate.getDay() <= 25) {
             benefitDetails.put(DiscountPolicy.CHRISTMAS_D_DAY_DISCOUNT,
                     BenefitCalculator.calculateChristmasDDayDiscount(visitDate));
         }
     }
 
-    public void applySpecialDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
+    private void applySpecialDiscount(BenefitDetails benefitDetails, VisitDate visitDate) {
         if (visitDate.isSpecialDay()) {
             benefitDetails.put(DiscountPolicy.SPECIAL_DISCOUNT, BenefitCalculator.calculateSpecialDiscount());
         }
