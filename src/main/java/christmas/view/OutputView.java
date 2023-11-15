@@ -43,7 +43,7 @@ public class OutputView {
         System.out.println();
         System.out.println(ORDER_MENU);
 
-        for (Map.Entry<Menu, Integer> orderMenu : orderList.get().entrySet()) {
+        for (Map.Entry<Menu, Integer> orderMenu : orderList.of().entrySet()) {
             Menu menu = orderMenu.getKey();
             int quantity = orderMenu.getValue();
 
@@ -65,7 +65,7 @@ public class OutputView {
             System.out.println(NONE);
             return;
         }
-        for (Map.Entry<Menu, Integer> giveaway : giveawayDetails.get().entrySet()) {
+        for (Map.Entry<Menu, Integer> giveaway : giveawayDetails.of().entrySet()) {
             Menu menu = giveaway.getKey();
             int quantity = giveaway.getValue();
 
@@ -81,7 +81,7 @@ public class OutputView {
             System.out.println(NONE);
             return;
         }
-        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.get().entrySet()) {
+        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.of().entrySet()) {
             DiscountPolicy discountPolicy = benefit.getKey();
             int amount = benefit.getValue();
 

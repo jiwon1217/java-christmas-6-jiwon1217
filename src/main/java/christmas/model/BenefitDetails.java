@@ -10,7 +10,7 @@ public class BenefitDetails {
         this.benefitDetails = benefitDetails;
     }
 
-    public Map<DiscountPolicy, Integer> get() {
+    public Map<DiscountPolicy, Integer> of() {
         return Collections.unmodifiableMap(benefitDetails);
     }
 

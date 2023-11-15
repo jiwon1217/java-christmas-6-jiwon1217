@@ -15,7 +15,7 @@ public class Calculator {
     public static OrderAmount calculateOrderAmount(OrderList orderList) {
         int amount = 0;
 
-        for (Map.Entry<Menu, Integer> orderMenu : orderList.get().entrySet()) {
+        for (Map.Entry<Menu, Integer> orderMenu : orderList.of().entrySet()) {
             Menu menu = orderMenu.getKey();
             int quantity = orderMenu.getValue();
 
@@ -27,7 +27,7 @@ public class Calculator {
     public static BenefitAmount calculateBenefitAmount(BenefitDetails benefitDetails) {
         int amount = 0;
 
-        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.get().entrySet()) {
+        for (Map.Entry<DiscountPolicy, Integer> benefit : benefitDetails.of().entrySet()) {
             amount += benefit.getValue();
         }
         return new BenefitAmount(amount);
@@ -41,7 +41,7 @@ public class Calculator {
             return new PayAmount(paymentInformation.getOrderAmount());
         }
 
-        int giveawayAmount = benefitDetails.get().get(DiscountPolicy.GIVEAWAY_EVENT);
+        int giveawayAmount = benefitDetails.of().get(DiscountPolicy.GIVEAWAY_EVENT);
         int amount =
                 paymentInformation.getOrderAmount() - benefitInformation.getBenefitAmount() + giveawayAmount;
 

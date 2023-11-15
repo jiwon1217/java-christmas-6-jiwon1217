@@ -10,7 +10,7 @@ public class OrderList {
         this.orderList = orderList;
     }
 
-    public Map<Menu, Integer> get() {
+    public Map<Menu, Integer> of() {
         return Collections.unmodifiableMap(orderList);
     }
 }

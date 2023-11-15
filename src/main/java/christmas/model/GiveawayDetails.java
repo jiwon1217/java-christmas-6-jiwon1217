@@ -10,7 +10,7 @@ public class GiveawayDetails {
         this.giveawayDetails = giveawayDetails;
     }
 
-    public Map<Menu, Integer> get() {
+    public Map<Menu, Integer> of() {
         return Collections.unmodifiableMap(giveawayDetails);
     }
 
