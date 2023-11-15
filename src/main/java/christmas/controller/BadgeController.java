@@ -2,9 +2,20 @@ package christmas.controller;
 
 import christmas.model.Badge;
 import christmas.model.BadgeDetails;
+import christmas.model.BenefitInformation;
 import christmas.view.OutputView;
 
 public class BadgeController {
+    private static int SANTA_BADGE_THRESHOLD = 20_000;
+    private static int TREE_BADGE_THRESHOLD = 10_000;
+    private static int STAR_BADGE_THRESHOLD = 5_000;
+
+    public void give(BenefitInformation benefitInformation) {
+        int benefitAmount = benefitInformation.getBenefitAmount();
+
+        getBadge(benefitAmount);
+    }
+
     private static void getBadge(int benefitAmount) {
         getSantaBadge(benefitAmount);
         getTreeBadge(benefitAmount);
@@ -41,18 +52,18 @@ public class BadgeController {
     }
 
     private static boolean isCannotGetAnyBadge(int benefitAmount) {
-        return benefitAmount < 5000;
+        return benefitAmount < STAR_BADGE_THRESHOLD;
     }
 
     private static boolean isPossibleStarBadge(int benefitAmount) {
-        return benefitAmount >= 5000 && benefitAmount < 10_000;
+        return benefitAmount >= STAR_BADGE_THRESHOLD && benefitAmount < TREE_BADGE_THRESHOLD;
     }
 
     private static boolean isPossibleTreeBadge(int benefitAmount) {
-        return benefitAmount >= 10_000 && benefitAmount < 20_000;
+        return benefitAmount >= TREE_BADGE_THRESHOLD && benefitAmount < SANTA_BADGE_THRESHOLD;
     }
 
     private static boolean isPossibleSantaBadge(int benefitAmount) {
-        return benefitAmount >= 20_000;
+        return benefitAmount >= SANTA_BADGE_THRESHOLD;
     }
 }
