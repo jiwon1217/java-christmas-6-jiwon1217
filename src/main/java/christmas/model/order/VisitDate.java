@@ -22,14 +22,14 @@ public class VisitDate {
     }
 
     public boolean isWeekend() {
-        return this.getDayOfTheWeek() == FRIDAY || this.getDayOfTheWeek() == SATURDAY;
+        return getDayOfTheWeek() == FRIDAY || getDayOfTheWeek() == SATURDAY;
     }
 
     public boolean isSpecialDay() {
-        return this.getDayOfTheWeek() == SUNDAY || isInChristmasDay();
+        return getDayOfTheWeek() == SUNDAY || getDay() == CHRISTMAS_DAY;
     }
 
     public boolean isInChristmasDay() {
-        return this.getDay() <= CHRISTMAS_DAY;
+        return getDay() <= CHRISTMAS_DAY;
     }
 }
